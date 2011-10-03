@@ -17,7 +17,7 @@ class Lock_Tech_Ranges {
 
 	private function setProducts($range_id) {
 		
-	$query = "SELECT productId, productCode, description, image, price, sale_price, name, cat_id, stock_level, WSL FROM CubeCart_inventory WHERE range_id = " . $range_id;
+	$query = "SELECT i.productId, i.productCode, i.description, i.image, i.price, i.sale_price, i.name, i.cat_id, i.stock_level, i.WSL, c.cat_name, c.cat_father_id FROM CubeCart_inventory AS i JOIN CubeCart_category AS c ON i.cat_id = c.cat_id WHERE range_id = " . $range_id;
 
 	$products = $this->select($query);
 
@@ -49,19 +49,36 @@ class Lock_Tech_Ranges {
 		
 	foreach($this->products as $key => $product):
 
-	$link .= $this->category_name_by_cat_id( $product['cat_id'] );
+	$father = $this->cat_father_by_id($product['cat_father_id']);
 
-	endforeach;
+	if($father['cat_father_id'] !== 0) {
+
+	$grand_father = $this->cat_father_by_id($father['cat_father_id']);
+	
+	}
+
+	else {
+		
+	// Carry on from here.
 
 	}
 
-	public function category_name_by_cat_id( $cat_id ) {
+	endforeach;
+
+	return $father['cat_father_id'];
+
+
+	}
+
+	public function cat_father_by_id( $cat_id ) {
 		
-	$query = "SELECT cat_name FROM CubeCart_category WHERE cat_id = $cat_id GROUP BY cat_name";
+	$query = "SELECT cat_father_id, cat_name FROM CubeCart_category WHERE cat_id = $cat_id LIMIT 1";
 
 	$cat_name = $this->select($query);
 
-	return $cat_name;
+	foreach($cat_name as $father): endforeach;
+
+	return $father;
 
 	}
 		
@@ -108,5 +125,5 @@ class Lock_Tech_Ranges {
 
 $range_products = new Lock_Tech_Ranges(1);
 
-// var_dump($range_products->image_paths);
+var_dump($range_products->create_product_links());
 		

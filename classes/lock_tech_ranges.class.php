@@ -17,7 +17,7 @@ class Lock_Tech_Ranges {
 
 	global $db;
 		
-	$query = "SELECT productId, productCode, description, image, price, sale_price, name, cat_id, stock_level, WSL FROM CubeCart_inventory WHERE range_id = " . $range_id;
+	$query = "SELECT i.productId, i.productCode, i.description, i.image, i.price, i.sale_price, i.name, i.cat_id, i.stock_level, i.WSL, c.cat_name, c.cat_father_id FROM CubeCart_inventory AS i JOIN CubeCart_category AS c ON i.cat_id = c.cat_id WHERE range_id = " . $range_id;
 
 	$products = $db->select($query);
 
@@ -31,24 +31,7 @@ class Lock_Tech_Ranges {
 
 	}
 
-	private function create_image_paths() {
-		
-	foreach($this->products as $key => $value):
 
-	$image_path[] = "http://lock-tech.co.uk/shop" . "images/uploads/thumbs/thumb_" . str_replace('productImages/', '', $value['image']); 
-
-	endforeach;
-
-	return $image_path;
-
-	}
-		
-
-}
-
-$range_products = new Lock_Tech_Ranges(1);
-
-var_dump($range_products->create_image_paths());
 
 
 ?>
