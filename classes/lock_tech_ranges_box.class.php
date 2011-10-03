@@ -1,6 +1,6 @@
 <?php 
 
-class Lock_Tech_Ranges {
+class Lock_Tech_Ranges_Box {
 
 	public $range_id 	= array();
 	public $range_name 	= array();
@@ -14,10 +14,12 @@ class Lock_Tech_Ranges {
 	}
 
 	private function setProperties() {
+
+	global $db;
 		
 	$query = "SELECT range_id, range_name FROM lock_tech_ranges";	
 
-	$rangeIds = $this->select($query);
+	$rangeIds = $db->select($query);
 		
 	foreach($rangeIds as $key => $value): 
 
@@ -37,46 +39,8 @@ class Lock_Tech_Ranges {
 
 	}
 
-		private function exec($query) {
-
-		$link = mysql_connect('localhost', 'root', '');
-
-		mysql_select_db('swansea3_lock-tech-shop');
-
-		return mysql_query($query, $link);
-
-		}
-
-		function select($query, $maxRows = 0, $pageNum = 0) {
-
-		$result = $this->exec($query);
-
-		$max = mysql_num_rows($result);
-
-		if ($max > 0) {
-
-		for ($n = 0; $n < $max; ++$n) {
-
-		$row = mysql_fetch_assoc($result);
-
-		$output[$n] = $row;
-
-		}
-
-		return $output;
-
-		} else {
-
-		return false;
-
-		}
-		}
-
-
 }
 
-$ranges = new Lock_Tech_Ranges();
-
-var_dump($ranges);
+$ranges = new Lock_Tech_Ranges_Box();
 
 ?>

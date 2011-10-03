@@ -1,12 +1,19 @@
 <!-- BEGIN: products -->
-<div class="products">
-<ul class="product_loop">
+<div class="range_products">
+<ul>
 	<!-- BEGIN: product_loop -->
+	<li>
 
-	<li>{DATA}</li>
+		<ul>
 
+			<li>{DATA.name}</li>
+			<li>{DATA.price}</li>
+			<li>{DATA.sale_price}</li>
+
+		</ul>
+
+	</li>
 	<!-- END: product_loop -->
-
-<!-- END: products -->
-</ul>
+<ul>
 </div>
+<!-- END: products -->
