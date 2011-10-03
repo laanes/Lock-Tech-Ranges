@@ -30,11 +30,25 @@ class Lock_Tech_Ranges {
 	$this->productCount = count($this->products);
 
 	}
+
+	private function create_image_paths() {
+		
+	foreach($this->products as $key => $value):
+
+	$image_path[] = "http://lock-tech.co.uk/shop" . "images/uploads/thumbs/thumb_" . str_replace('productImages/', '', $value['image']); 
+
+	endforeach;
+
+	return $image_path;
+
+	}
 		
 
 }
 
 $range_products = new Lock_Tech_Ranges(1);
+
+var_dump($range_products->create_image_paths());
 
 
 ?>
