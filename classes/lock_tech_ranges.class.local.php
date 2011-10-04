@@ -2,16 +2,11 @@
 
 class Lock_Tech_Ranges {
 
-	private $range_id;
-	public  $products = array();
-	public  $image_paths = array();
-	public  $productCount;
-	
-	public function __construct($range_id) {
+	public $products = array();
+
+	public function __construct( $range_id ) {
 
 	$this->setProducts($range_id);
-	$this->countProds();
-	$this->create_image_paths();
 		
 	}
 
@@ -25,50 +20,6 @@ class Lock_Tech_Ranges {
 	
 	}
 
-	private function countProds() {
-		
-	$this->productCount = count($this->products);
-
-	}
-
-	public function create_image_paths() {
-		
-	foreach($this->products as $key => $value):
-
-	$image_path[] = "http://lock-tech.co.uk/shop" . "/images/uploads/thumbs/thumb_" . str_replace('productImages/', '', $value['image']); 
-
-	endforeach;
-
-	$this->image_paths = $image_path;
-
-	}
-
-	public function create_product_links() {
-
-	$link = "http://lock-tech.co.uk/shop/";
-		
-	foreach($this->products as $key => $product):
-
-	$father = $this->cat_father_by_id($product['cat_father_id']);
-
-	if($father['cat_father_id'] !== 0) {
-
-	$grand_father = $this->cat_father_by_id($father['cat_father_id']);
-	
-	}
-
-	else {
-		
-	// Carry on from here.
-
-	}
-
-	endforeach;
-
-	return $father['cat_father_id'];
-
-
-	}
 
 	public function cat_father_by_id( $cat_id ) {
 		
@@ -76,12 +27,19 @@ class Lock_Tech_Ranges {
 
 	$cat_name = $this->select($query);
 
-	foreach($cat_name as $father): endforeach;
-
-	return $father;
+	return $cat_name;
 
 	}
+
+	public function range_name_by_id( $range_id ) {
 		
+	$query = "SELECT range_name FROM lock_tech_ranges WHERE range_id = $range_id LIMIT 1";
+
+	$result = $this->select($query);
+
+	return $result[0]['range_name'];
+
+	}
 
 
 			private function exec($query) {
@@ -121,9 +79,4 @@ class Lock_Tech_Ranges {
 		
 
 
-}
-
-$range_products = new Lock_Tech_Ranges(1);
-
-var_dump($range_products->create_product_links());
-		
+}		
