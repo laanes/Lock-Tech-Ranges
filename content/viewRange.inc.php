@@ -3,19 +3,27 @@
 if (isset($_GET['rangeId'])) {
 
 $view_range = new XTemplate ('content'.CC_DS.'viewRange.tpl');
+
 require_once('modules'.CC_DS.'3rdparty'.CC_DS.'lock_tech_ranges'.CC_DS.'classes'.CC_DS.'lock_tech_ranges.controller.php');
 
-$range_products = new Lock_Tech_Ranges_Controller($_GET['rangeId']);
+$page  = Lock_Tech_Ranges::$page  = isset($_GET['page']) ? (int)sanitizeVar($_GET['page']) : 0;
+$limit = Lock_Tech_Ranges::$limit = /*$config['productPages']*/ 6 ;
+
+$range_products = new Lock_Tech_Ranges_Controller();
 
 $view_range->assign('HOME_HREF',  $glob['storeURL']);
-$view_range->assign('RANGE_HREF', $_SERVER['PHP_SELF']);
 $view_range->assign('RANGE_NAME', $range_products->range_name);
 $view_range->assign('RANGE_ID',   $range_products->range_id);
 
-$view_range->assign("CURRENT_URL", currentPage());
+$pagination = paginate($range_products->productCount, $limit, $page, 'page', 'txtLink', 4);
+	
+if (!empty($pagination)) {
+	$view_range->assign("PAGINATION", "<div class=\"pagination\">".$pagination."</div>");
+}
 
+$view_range->assign("CURRENT_URL", $_SERVER['REQUEST_URI']);
 
-	for($i=0; $i<=$range_products->productCount-1; $i++) { 
+	for($i=0; $i<=$limit-1; $i++) { 
 
 			$image_path = $range_products->image_paths[$i];
 
@@ -43,9 +51,9 @@ $page_content = $view_range->text('products');
 
 }
 
-else {
+elseif($_GET['_a'] == 'viewRange' && strpos($_SERVER['REQUEST_URI'], "added=1")) {
 	
-// header('Location: ' . $glob['storeURL']);
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 }
 

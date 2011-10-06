@@ -1,10 +1,14 @@
-BEGIN: products -->
+<!-- BEGIN: products -->
 
 <div class="breadcrumb">
-<h1><a href="{HOME_HREF}">HOME</a><span class="forward_slash"><strong>/</strong></span><a href="{RANGE_HREF}">{RANGE_NAME}</a><h1></div>
+<h1><a href="{HOME_HREF}">HOME</a><span class="forward_slash"><strong>/</strong></span><a href="{CURRENT_URL}">{RANGE_NAME}</a><h1></div>
 
 <div class="range_products">
+
+{PAGINATION}
+
 <ul>
+
 	<!-- BEGIN: product_loop -->
 <li>
 
@@ -49,6 +53,10 @@ BEGIN: products -->
 
 	</li>
 	<!-- END: product_loop -->
+
 <ul>
+
+{PAGINATION}
+
 </div>
 <!-- END: products -->

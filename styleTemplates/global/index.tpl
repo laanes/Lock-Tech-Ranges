@@ -22,7 +22,6 @@
 <script type="text/javascript" src="modules/3rdparty/Advanced_Product_Filtering/js/advanced_filtering/jquery_advanced_filtering.js"></script>
 
 <script type="text/javascript" src="modules/3rdparty/Homepage_Categories/js/homepage_categories_interaction.js"></script>
-<script type="text/javascript" src="js/jQuery/jQueryRotate.2.1.js"></script>
 <script type="text/javascript">
 $.noConflict();
 </script>

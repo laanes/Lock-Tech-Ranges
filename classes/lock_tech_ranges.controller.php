@@ -1,4 +1,5 @@
-<?php require_once('lock_tech_ranges.class.php');
+<?php require_once('lock_tech_ranges.class.php');  
+
 
 class Lock_Tech_Ranges_Controller extends Lock_Tech_Ranges {
 
@@ -9,19 +10,19 @@ class Lock_Tech_Ranges_Controller extends Lock_Tech_Ranges {
 	public 	$range_name;
 	public  $range_id;
 
-	public function __construct( $range_id ) {
+	public function __construct() {
 
-	$this->range_id = $range_id;
+	$this->range_id = $_GET['rangeId'];
 
-	$this->range_name = $this->range_name_by_id( $this->range_id );
+		$this->range_name = $this->range_name_by_id( $this->range_id );
 
-	parent::__construct( $this->range_id );
+			parent::__construct( $this->range_id );
 
-		if( !empty( $this->products ) ) {
+				if( !empty( $this->products ) ) {
 
-			$this->setup();
+					$this->setup();
 
-		}
+				}
 		
 	}
 
@@ -35,7 +36,7 @@ class Lock_Tech_Ranges_Controller extends Lock_Tech_Ranges {
 	
 	private function countProds() {
 		
-	$this->productCount = count($this->products);
+	$this->productCount = count( $this->getProducts( false ) );
 
 	}
 
