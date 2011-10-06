@@ -97,7 +97,7 @@ require_once('classes/lock_tech_ranges.controller.local.php');
      font-size: 16px;
      padding: 8px;
      font-family: verdana;
-}
+} 	
 
 
 </style>
@@ -156,6 +156,10 @@ require_once('classes/lock_tech_ranges.controller.local.php');
 			</p></li> -->
 
 			<li><a class="range_products_add_to_basket" target="_self" href="javascript:submitDoc('prod<?php echo $productId; ?>');">Add to basket</a></li>
+
+<form name="prod3985919" method="post" action="/shop/index.php?_a=viewCat&amp;catId=2118208">
+<input type="hidden" value="3985919" name="add">
+<input type="hidden" value="1" name="quan"><a class="txtButton" target="_self" href="javascript:submitDoc('prod3985919');">Add to basket</a>
 
 
 			</li>

@@ -26,12 +26,16 @@ BEGIN: products -->
 
 <!-- 			<li><a class="range_products_add_to_basket" target="_self" href="javascript:submitDoc('prod{ID}');">Add to basket</a></li> -->
 
-			<form name="prod{ID}" method="post" action="{RANGE_HREF}">
-			<input type="hidden" value="{ID}" name="add">
-			<input type="hidden" value="1" name="quan">
+			<form name="prod{ID}" method="post" action="{CURRENT_URL}">
+			<input type="hidden" value="{ID}" name="add"/>
+			<input type="hidden" value="1" name="quan"/>
+			<input type="hidden" value="{RANGE_ID}" name="rangeId"/>
+			
 			<a class="range_products_add_to_basket" target="_self" href="javascript:submitDoc('prod{ID}');">
 			Add to basket
 			</a>
+
+			</form>
 
 
 			</li>
@@ -47,4 +51,4 @@ BEGIN: products -->
 	<!-- END: product_loop -->
 <ul>
 </div>
-<!-- END: products
+<!-- END: products -->

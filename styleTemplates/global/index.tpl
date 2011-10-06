@@ -27,7 +27,10 @@
 $.noConflict();
 </script>
 
-<script type="text/javascript" src="js/prototype.js,jslibrary.js,lightbox.js,effects.js,builder.js"></script>
+<script type="text/javascript" src="js/jslibrary.js"></script>
+<script type="text/javascript" src="js/lightbox.js"></script>
+
+<script type="text/javascript" src="js/prototype.js,jslibrary.js,.free_standard_delivery_info.js,effects.js,builder.js"></script>
 <script type="text/javascript"> var RecaptchaOptions = { theme : 'white' }; </script>
 
 <link rel="alternate" type="application/rss+xml" title="Swansea Timber RSS feed" href="http://www.swanseatimber.co.uk/shop/rss2.php?sale&random=1" /> 
@@ -41,7 +44,7 @@ $.noConflict();
 
 </head>
 
-<body onload="initialiseMenu();">
+<body>
 <div class="preloader"><p>Please wait..</p></div>
 	
 <div class="topHeaderWrapper">
@@ -96,12 +99,12 @@ $.noConflict();
 		</td>
 		<td width="190" valign="top">
   <div class="colRight">
+  <div class="boxContentRight">
+
 		{SHOPPING_CART}
 		{DELIVERY_INFO_BOX}
-<!-- 		{SOCIAL_MEDIA_BOX} -->
-<!-- 		{LOGOS} -->
-<!-- {SESSION} -->
-<!-- 		{SALE_ITEMS} -->
+
+ </div>
  </div>
 
   		</td>

@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 
 if (isset($_GET['rangeId'])) {
 
@@ -11,6 +10,10 @@ $range_products = new Lock_Tech_Ranges_Controller($_GET['rangeId']);
 $view_range->assign('HOME_HREF',  $glob['storeURL']);
 $view_range->assign('RANGE_HREF', $_SERVER['PHP_SELF']);
 $view_range->assign('RANGE_NAME', $range_products->range_name);
+$view_range->assign('RANGE_ID',   $range_products->range_id);
+
+$view_range->assign("CURRENT_URL", currentPage());
+
 
 	for($i=0; $i<=$range_products->productCount-1; $i++) { 
 
@@ -42,7 +45,7 @@ $page_content = $view_range->text('products');
 
 else {
 	
-header('Location: '.$glob['storeURL']);
+// header('Location: ' . $glob['storeURL']);
 
 }
 
